@@ -14,6 +14,5 @@ export const getStaticProps = async (context) => {
   };
 };
 
-const blogs = await fetch("https://dev.to/api/articles");
-
+const blogs = await fetch("https://dev.to/api/articles?page=1");
 console.log(blogs);
