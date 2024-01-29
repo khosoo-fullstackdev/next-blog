@@ -13,3 +13,7 @@ export const getStaticProps = async (context) => {
     props: { data: data },
   };
 };
+
+const blogs = await fetch("https://dev.to/api/articles");
+
+console.log(blogs);
