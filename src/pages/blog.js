@@ -1,18 +1,15 @@
 import { Source_Serif_4 } from "next/font/google";
 import React from "react";
 
-export default function Blog(props) {
-  return <div>{props.data.title}</div>;
+export default function Blog() {
+  return <div>hi</div>;
 }
 
-export const getStaticProps = async (context) => {
-  const result = await fetch("https://jsonplaceholder.typicode.com/todos/1");
-  const data = await result.json();
-  console.log(data);
-  return {
-    props: { data: data },
-  };
-};
-
-const blogs = await fetch("https://dev.to/api/articles?page=1");
-console.log(blogs);
+// export const getStaticProps = async (context) => {
+//   const result = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+//   const data = await result.json();
+//   console.log(data);
+//   return {
+//     props: { data: data },
+//   };
+// };
