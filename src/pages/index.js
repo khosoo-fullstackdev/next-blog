@@ -1,4 +1,3 @@
-import { Source_Serif_4 } from "next/font/google";
 import Highlight from "./components/Highlight";
 import Header from "./components/Header";
 import Trending from "./components/Trending";
