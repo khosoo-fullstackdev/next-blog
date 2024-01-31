@@ -2,16 +2,10 @@ export default function Blog(props) {
   console.log(props);
   const postData = props.data;
   return (
-    <div className="flex flex-col items-center gap-[32px] w-[1231px]">
-      <div className="flex flex-col items-start gap-[32px] ">
-        <div className="flex flex-col items-start gap-8 self-stretch">
-          <div className="w-[184px]">
-            <h1 className="text-[#181A2A] font-sans text-[24px] not-italic font-bold leading-7">
-              All Blog Post
-            </h1>
-          </div>
-        </div>
-      </div>
+    <div className="flex flex-col m-auto gap-[32px] w-[1231px]">
+      <h1 className="text-[#181A2A] font-sans text-[24px] not-italic font-bold leading-7">
+        All Blog Post
+      </h1>
       <div className="flex items-start gap-5 flex-wrap">
         {postData.map((post) => (
           <div className="flex w-[392px] p-4 flex-col justify-center items-center gap-4 rounded-[12px] border border-[#E8E8EA] bg-[#FFF]">

@@ -14,12 +14,12 @@ export default function Home(props) {
   );
 }
 
-export const getStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
   const highlight = await fetch("https://dev.to/api/articles?top=1&per_page=1");
   const hlData = await highlight.json();
   const trend = await fetch("https://dev.to/api/articles?top=1&per_page=4");
   const trendData = await trend.json();
-  const post = await fetch("https://dev.to/api/articles?top=30&per_page=9");
+  const post = await fetch("https://dev.to/api/articles?top=1&per_page=9");
   const postData = await post.json();
 
   return {
