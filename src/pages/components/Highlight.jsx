@@ -1,4 +1,4 @@
-export const Highlight = (props) => {
+export default function Highlight(props) {
   const hlData = props.data;
   console.log("dafgd", hlData);
   return (
@@ -56,4 +56,4 @@ export const Highlight = (props) => {
       </div>
     </div>
   );
-};
+}
