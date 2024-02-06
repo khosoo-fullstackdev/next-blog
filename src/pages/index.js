@@ -15,11 +15,11 @@ export default function Page() {
       // const postData = await pData.json();
 
       getArticles(hlData);
+      console.log(hlData);
     }
     getArticle();
   }, []);
 
-  console.log(hlData);
   return (
     <div className="flex flex-col items-center gap-[100px] m-auto pt-[500px] justify-center">
       {/* <Highlight hlData={hlData} />
