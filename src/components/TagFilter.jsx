@@ -20,31 +20,31 @@ export const TagFilter = () => {
             </li>
             <li
               className="text-[#495057] font-sans text-[12px] not-italic font-bold leading-[25px] hover:text-[#D4A373]"
-              onClick={() => router.push("/blog/design")}
+              onClick={() => router.push("/blog/Design")}
             >
               Design
             </li>
             <li
               className="text-[#495057] font-sans text-[12px] not-italic font-bold leading-[25px] hover:text-[#D4A373]"
-              onClick={() => router.push("/blog/travel")}
+              onClick={() => router.push("/blog/Travel")}
             >
               Travel
             </li>
             <li
               className="text-[#495057] font-sans text-[12px] not-italic font-bold leading-[25px] hover:text-[#D4A373]"
-              onClick={() => router.push("/blog/fashion")}
+              onClick={() => router.push("/blog/Fashion")}
             >
               Fashion
             </li>
             <li
               className="text-[#495057] font-sans text-[12px] not-italic font-bold leading-[25px] hover:text-[#D4A373]"
-              onClick={() => router.push("/blog/technology")}
+              onClick={() => router.push("/blog/Technology")}
             >
               Technology
             </li>
             <li
               className="text-[#495057] font-sans text-[12px] not-italic font-bold leading-[25px] hover:text-[#D4A373]"
-              onClick={() => router.push("/blog/branding")}
+              onClick={() => router.push("/blog/Branding")}
             >
               Branding
             </li>
