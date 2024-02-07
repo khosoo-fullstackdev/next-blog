@@ -3,12 +3,11 @@ import { HlBadge } from "@/components";
 import { LeftArrowIcon, RightArrowIcon } from "./icons";
 import Link from "next/link";
 
-export const Highlight = (props) => {
-  console.log(props);
+export const Highlight = ({ hlData }) => {
   return (
     <div className="carousel w-full">
       <div className="md:container md:mx-auto flex gap-3 mt-[140px] carousel">
-        {props.hlData.map((highL, key) => (
+        {hlData.map((highL, key) => (
           <div
             id={key}
             className="flex flex-col w-full gap-3 carousel-item"
