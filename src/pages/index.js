@@ -32,11 +32,13 @@ export default function Page({ hlData, trendData, postData }) {
 }
 
 export const getServerSideProps = async (context) => {
-  const highlight = await fetch("https://dev.to/api/articles?top=1&per_page=5");
+  const highlight = await fetch(
+    "https://next-api-zeta.vercel.app/api/highlight"
+  );
   const hlData = await highlight.json();
-  const trend = await fetch("https://dev.to/api/articles?top=1&per_page=4");
+  const trend = await fetch("https://next-api-zeta.vercel.app/api/trend");
   const trendData = await trend.json();
-  const post = await fetch("https://dev.to/api/articles?top=30&per_page=9");
+  const post = await fetch("https://next-api-zeta.vercel.app/api/post");
   const postData = await post.json();
 
   return {
