@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
 
+const title = ["design", "travel", "fashion", "technology", "branding"];
+
 export const TagFilter = () => {
   const router = useRouter();
   return (
@@ -18,36 +20,16 @@ export const TagFilter = () => {
             >
               All
             </li>
-            <li
-              className="text-[#495057] font-sans text-[12px] not-italic font-bold leading-[25px] hover:text-[#D4A373]"
-              onClick={() => router.push("/blog/Design")}
-            >
-              Design
-            </li>
-            <li
-              className="text-[#495057] font-sans text-[12px] not-italic font-bold leading-[25px] hover:text-[#D4A373]"
-              onClick={() => router.push("/blog/Travel")}
-            >
-              Travel
-            </li>
-            <li
-              className="text-[#495057] font-sans text-[12px] not-italic font-bold leading-[25px] hover:text-[#D4A373]"
-              onClick={() => router.push("/blog/Fashion")}
-            >
-              Fashion
-            </li>
-            <li
-              className="text-[#495057] font-sans text-[12px] not-italic font-bold leading-[25px] hover:text-[#D4A373]"
-              onClick={() => router.push("/blog/Technology")}
-            >
-              Technology
-            </li>
-            <li
-              className="text-[#495057] font-sans text-[12px] not-italic font-bold leading-[25px] hover:text-[#D4A373]"
-              onClick={() => router.push("/blog/Branding")}
-            >
-              Branding
-            </li>
+            {title.map((a) => {
+              return (
+                <li
+                  className="text-[#495057] font-sans text-[12px] not-italic font-bold leading-[25px] hover:text-[#D4A373]"
+                  onClick={() => router.push(`/blog/${a}`)}
+                >
+                  {a}
+                </li>
+              );
+            })}
           </ul>
           <div className="flex-[1_0_0]">
             <p

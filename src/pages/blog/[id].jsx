@@ -1,26 +1,26 @@
-import { TagFilter } from "@/components";
 import { PostBadge } from "@/components";
 import { LoadMore } from "@/components/Buttons";
 import { useState } from "react";
+
 import Link from "next/link";
+
+const title = ["design", "travel", "fashion", "technology", "branding"];
 
 const Page = (props) => {
   const [articles, setArticles] = useState(props.postData);
   const [pageNumber, setPageNumber] = useState(2);
 
-  async function loadMoreHandler() {
+  async function LoadMoreHandler(a) {
     const response = await fetch(
-      `https://dev.to/api/articles?tag=branding&per_page=3&page=${pageNumber}`
+      `https://dev.to/api/articles?tag=${a}&per_page=3&page=${pageNumber}`
     );
     const data = await response.json();
-    console.log({ data });
     setArticles([...articles, ...data]);
     setPageNumber(pageNumber + 1);
   }
 
   return (
     <div className="flex flex-col gap-12 mt-[120px] md:container md:mx-auto max-w-[1280px] w-[100%]">
-      <TagFilter />
       <div className="flex flex-col">
         <div className="flex flex-col items-center gap-[32px] w-[1231px]">
           <div className="flex items-start justify-between gap-5 flex-wrap">
@@ -67,7 +67,6 @@ const Page = (props) => {
                             backgroundRepeat: "no-repeat",
                           }}
                         ></div>
-
                         <span className="text-[#97989F] font-sans text-[16px] not-italic font-medium leading-6">
                           {post.user.name}
                         </span>
@@ -84,7 +83,10 @@ const Page = (props) => {
             ))}
           </div>
         </div>
-        <div className="flex mt-[100px] mx-auto" onClick={loadMoreHandler}>
+        <div
+          className="flex mt-[100px] mx-auto"
+          onClick={LoadMoreHandler(title)}
+        >
           <LoadMore />
         </div>
       </div>
@@ -94,9 +96,9 @@ const Page = (props) => {
 export default Page;
 
 export const getServerSideProps = async (context) => {
-  const post = await fetch(
-    "https://dev.to/api/articles?tag=design&per_page=12"
-  );
+  const { query } = context;
+  const { id } = query;
+  const post = await fetch(`https://dev.to/api/articles?tag=${id}&per_page=12`);
   const postData = await post.json();
 
   return {
