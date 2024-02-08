@@ -1,18 +1,20 @@
 import { PostBadge } from "@/components";
 import { LoadMore } from "@/components/Buttons";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 import Link from "next/link";
 
-const title = ["design", "travel", "fashion", "technology", "branding"];
+const title = ["Design", "Travel", "Fashion", "Technology", "Branding"];
 
 const Page = (props) => {
   const [articles, setArticles] = useState(props.postData);
   const [pageNumber, setPageNumber] = useState(2);
+  const router = useRouter();
 
-  async function LoadMoreHandler(a) {
+  async function LoadMoreHandler() {
     const response = await fetch(
-      `https://dev.to/api/articles?tag=${a}&per_page=3&page=${pageNumber}`
+      `https://dev.to/api/articles?tag=branding&per_page=3&page=${pageNumber}`
     );
     const data = await response.json();
     setArticles([...articles, ...data]);
@@ -21,6 +23,43 @@ const Page = (props) => {
 
   return (
     <div className="flex flex-col gap-12 mt-[120px] md:container md:mx-auto max-w-[1280px] w-[100%]">
+      <div className="flex flex-col items-start gap-[32px] ">
+        <div className="flex flex-col items-start gap-8 self-stretch">
+          <div className="w-[184px]">
+            <h1 className="text-[#181A2A] font-sans text-[24px] not-italic font-bold leading-7">
+              All Blog Post
+            </h1>
+          </div>
+          <div className="flex w-[1216px] items-center gap-[30px]">
+            <ul className="flex items-center gap-5">
+              <li
+                className="text-[#495057] font-sans text-[12px] not-italic font-bold leading-[25px] hover:text-[#D4A373]"
+                onClick={() => router.push("/blog")}
+              >
+                All
+              </li>
+              {title.map((a) => {
+                return (
+                  <li
+                    className="text-[#495057] font-sans text-[12px] not-italic font-bold leading-[25px] hover:text-[#D4A373]"
+                    onClick={() => router.push(`/blog/${a}`)}
+                  >
+                    {a}
+                  </li>
+                );
+              })}
+            </ul>
+            <div className="flex-[1_0_0]">
+              <p
+                className="text-[#495057] text-right font-sans text-[12px] not-italic font-bold leading-[25px] hover:text-[#D4A373]"
+                onClick={() => router.push("/blog")}
+              >
+                View All
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="flex flex-col">
         <div className="flex flex-col items-center gap-[32px] w-[1231px]">
           <div className="flex items-start justify-between gap-5 flex-wrap">
@@ -83,10 +122,8 @@ const Page = (props) => {
             ))}
           </div>
         </div>
-        <div
-          className="flex mt-[100px] mx-auto"
-          onClick={LoadMoreHandler(title)}
-        >
+
+        <div className="flex mt-[100px] mx-auto" onClick={LoadMoreHandler}>
           <LoadMore />
         </div>
       </div>

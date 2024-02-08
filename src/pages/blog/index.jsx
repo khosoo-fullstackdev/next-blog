@@ -1,12 +1,15 @@
 import { LoadMore } from "@/components/Buttons";
 import { PostBadge } from "@/components";
-import { TagFilter } from "@/components";
 import { useState } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
+
+const title = ["Design", "Travel", "Fashion", "Technology", "Branding"];
 
 const Blog = (props) => {
   const [articles, setArticles] = useState(props.postData);
   const [pageNumber, setPageNumber] = useState(2);
+  const router = useRouter();
 
   async function LoadMoreHandler() {
     const response = await fetch(
@@ -118,6 +121,7 @@ const Blog = (props) => {
             ))}
           </div>
         </div>
+
         <div className="flex mt-[100px] mx-auto" onClick={LoadMoreHandler}>
           <LoadMore />
         </div>
