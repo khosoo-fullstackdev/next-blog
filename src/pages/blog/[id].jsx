@@ -1,11 +1,11 @@
 import { TagFilter } from "@/components";
 import { PostBadge } from "@/components";
 import { LoadMore } from "@/components/Buttons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const Branding = (props) => {
+const Post = (props) => {
   const router = useRouter();
   console.log(router.query.tag);
   const [articles, setArticles] = useState(props.postData);
@@ -13,13 +13,23 @@ const Branding = (props) => {
 
   async function LoadMoreHandler() {
     const response = await fetch(
-      `http://localhost:4000/api/loadMore/tag?tag=${router.query.tag}&page=${pageNumber}`
+      `https://dev.to/api/articles?tag?tag=${router.query.tag}&page=${pageNumber}`
     );
     const data = await response.json();
     setArticles([...articles, ...data]);
     setPageNumber(pageNumber + 1);
   }
 
+  useEffect(() => {
+    async function updateData() {
+      const post = await fetch(
+        `https://dev.to/api/articles?tag?tag=${router.query.tag.toLowerCase()}`
+      );
+      const postData = await post.json();
+      setArticles(postData);
+    }
+    updateData();
+  }, [router.query.tag]);
   return (
     <div className="flex flex-col gap-12 mt-[120px] md:container md:mx-auto max-w-[1280px] w-[100%]">
       <TagFilter />
@@ -92,13 +102,13 @@ const Branding = (props) => {
     </div>
   );
 };
-export default Branding;
+export default Post;
 
 export const getServerSideProps = async (context) => {
   const { query } = context;
   const { tag } = query;
   const post = await fetch(
-    `http://localhost:4000/api/blog/tag?tag=${tag.toLowerCase()}`
+    `https://dev.to/api/articles?tag?tag=${tag.toLowerCase()}`
   );
   const postData = await post.json();
 
