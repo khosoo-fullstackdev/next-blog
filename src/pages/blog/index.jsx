@@ -132,7 +132,7 @@ const Blog = (props) => {
 export default Blog;
 
 export const getStaticProps = async (context) => {
-  const post = await fetch("https://dev.to/api/articles?top=30&per_page=12");
+  const post = await fetch("https://dev.to/api/articles?top=1&per_page=12");
   const postData = await post.json();
 
   return {

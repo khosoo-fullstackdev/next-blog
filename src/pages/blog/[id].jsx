@@ -7,13 +7,13 @@ import { useRouter } from "next/router";
 
 const Post = (props) => {
   const router = useRouter();
-  console.log(router.query.tag);
+  console.log(router.query.id);
   const [articles, setArticles] = useState(props.postData);
   const [pageNumber, setPageNumber] = useState(2);
 
   async function LoadMoreHandler() {
     const response = await fetch(
-      `https://dev.to/api/articles?tag?tag=${router.query.tag}&page=${pageNumber}`
+      `https://dev.to/api/articles?tag?tag=${router.query.id}&page=${pageNumber}`
     );
     const data = await response.json();
     setArticles([...articles, ...data]);
@@ -23,7 +23,7 @@ const Post = (props) => {
   useEffect(() => {
     async function updateData() {
       const post = await fetch(
-        `https://dev.to/api/articles?tag?tag=${router.query.tag.toLowerCase()}`
+        `https://dev.to/api/articles?tag?tag=${router.query.id.toLowerCase()}`
       );
       const postData = await post.json();
       setArticles(postData);
@@ -106,9 +106,9 @@ export default Post;
 
 export const getServerSideProps = async (context) => {
   const { query } = context;
-  const { tag } = query;
+  const { id } = query;
   const post = await fetch(
-    `https://dev.to/api/articles?tag?tag=${tag.toLowerCase()}`
+    `https://dev.to/api/articles?tag?tag=${id.toLowerCase()}`
   );
   const postData = await post.json();
 

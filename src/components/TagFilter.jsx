@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-const title = ["design", "travel", "fashion", "technology", "branding"];
+const title = ["Design", "Travel", "Fashion", "Technology", "Branding"];
 
 export const TagFilter = () => {
   const router = useRouter();
